@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASCII FUN</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:black;
+    font-family:monospace;
+    color:#00ff66;
+}
+
+/* LEWY TERMINAL */
+
+#terminal{
+    position:absolute;
+
+    left:10px;
+    top:60px;
+
+    width:35%;
+    height:85%;
+
+    overflow:hidden;
+
+    font-size:12px;
+    line-height:14px;
+
+    white-space:pre-line;
+
+    text-shadow:
+    0 0 5px #00ff66;
+}
+
+/* ŚRODEK */
+
+#matrix{
+    position:absolute;
+
+    left:37%;
+    top:60px;
+
+    width:20%;
+    height:85%;
+
+    overflow:hidden;
+
+    font-size:10px;
+    line-height:11px;
+
+    white-space:pre-line;
+
+    text-shadow:
+    0 0 5px #00ff66;
+}
+
+/* KOTEK */
+
+#cat{
+    position:absolute;
+
+    right:4%;
+    bottom:5%;
+
+    font-size:5px;
+    line-height:5px;
+
+    white-space:pre;
+
+    transform:scale(2);
+
+    transform-origin:bottom right;
+
+    text-shadow:
+    0 0 10px #00ff66,
+    0 0 20px #00ff66;
+}
+
+/* NAPIS */
+
+#title{
+    position:absolute;
+
+    top:10px;
+    left:15px;
+
+    color:#ff0055;
+
+    font-size:28px;
+    font-weight:bold;
+
+    text-shadow:
+    0 0 15px #ff0055,
+    0 0 30px #ff0055;
+
+    animation:blink 1s infinite;
+}
+
+@keyframes blink{
+
+    0%{opacity:1;}
+    50%{opacity:0.3;}
+    100%{opacity:1;}
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="title">
+ASCII FUN
+</div>
+
+<div id="terminal"></div>
+
+<div id="matrix"></div>
+
+<div id="cat"></div>
+
+<script>
+
+/* =========================
+   TERMINAL
+========================= */
+
+const terminal =
+document.getElementById("terminal");
+
+const logs = [
+
+"READING CACHE...",
+"OPENING TOKENS...",
+"SYNCING DATA...",
+"SCANNING FILES...",
+"READING STORAGE...",
+"CONNECTING...",
+"EXPORTING DATA...",
+"VERIFYING SESSION..."
+];
+
+function addLog(){
+
+terminal.innerHTML +=
+`[${Math.floor(Math.random()*99999999)}]
+${logs[Math.floor(Math.random()*logs.length)]}
+
+`;
+
+if(terminal.innerHTML.length > 20000){
+
+terminal.innerHTML = "";
+}
+
+terminal.scrollTop =
+terminal.scrollHeight;
+}
+
+setInterval(addLog,70);
+
+/* =========================
+   KOD MATRIX
+========================= */
+
+const matrix =
+document.getElementById("matrix");
+
+const code = [
+
+"0101010101",
+"cache.open",
+"token=true",
+"packet.send",
+"memory.read",
+"device.sync",
+"kernel.load",
+"export.data",
+"decrypting...",
+"upload.live"
+];
+
+function addCode(){
+
+matrix.innerHTML +=
+code[Math.floor(Math.random()*code.length)]
++ "\n";
+
+if(matrix.innerHTML.length > 10000){
+
+matrix.innerHTML = "";
+}
+
+matrix.scrollTop =
+matrix.scrollHeight;
+}
+
+setInterval(addCode,35);
+
+/* =========================
+   KOTEK
+========================= */
+
+const frames = [
+
+`
+      /\\_/\\\\
+     ( o.o )
+      > ^ <
+     /|_|_|\\\\
+       / \\\\
+      O   O
+`,
+
+`
+      /\\_/\\\\
+     ( ^.^ )
+     / > <\\\\
+       | |
+      /   \\\\
+     O     O
+`,
+
+`
+      /\\_/\\\\
+     ( >w< )
+      \\\\| |//
+       / \\\\
+      O   O
+`,
+
+`
+      /\\_/\\\\
+     ( o_o )
+     /| | |\\\\
+       / \\\\
+      O   O
+`
+];
+
+let frame = 0;
+
+function animate(){
+
+document.getElementById("cat")
+.textContent = frames[frame];
+
+frame++;
+
+if(frame >= frames.length){
+
+frame = 0;
+}
+}
+
+setInterval(animate,220);
+
+animate();
+
+</script>
+
+</body>
+</html>
